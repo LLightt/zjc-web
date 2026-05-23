@@ -14,8 +14,8 @@ export function Markdown({ content }: MarkdownProps) {
         prose-a:text-accent prose-a:no-underline hover:prose-a:underline
         prose-strong:text-foreground
         prose-li:text-foreground/80 prose-li:font-light
-        prose-code:text-accent prose-code:bg-surface-dark prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-        prose-pre:bg-surface-dark prose-pre:border prose-pre:border-border-subtle"
+        prose-code:text-accent prose-code:bg-surface prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+        prose-pre:bg-surface prose-pre:border prose-pre:border-border-subtle"
     >
       <ReactMarkdown>{content}</ReactMarkdown>
     </div>

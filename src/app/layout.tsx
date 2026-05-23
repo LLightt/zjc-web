@@ -1,27 +1,24 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Geist, Geist_Mono } from "next/font/google";
-import { Header } from "@/components/header";
+import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Sidebar } from "@/components/sidebar";
 import { Footer } from "@/components/footer";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const display = Cormorant_Garamond({
   variable: "--font-display",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
 });
 
-const geistSans = Geist({
+const sans = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500"],
 });
 
 export const metadata: Metadata = {
-  title: "Personal Web",
+  title: "Zhang · Jc",
   description: "个人网站 — 展示项目与文章",
 };
 
@@ -33,12 +30,14 @@ export default function RootLayout({
   return (
     <html
       lang="zh"
-      className={`${playfair.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${display.variable} ${sans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="min-h-full">
+        <Sidebar />
+        <main className="md:ml-[200px] pt-[52px] md:pt-0">
+          {children}
+          <Footer />
+        </main>
       </body>
     </html>
   );

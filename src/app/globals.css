@@ -2,24 +2,23 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
-  --color-background: #0e0d0b;
-  --color-foreground: #f2eadc;
-  --color-accent: #bc9b6a;
+  --color-background: #0c0b09;
+  --color-foreground: #e8e0d2;
+  --color-accent: #c4956a;
+  --color-surface: #131210;
   --color-surface-light: #f2eadc;
   --color-surface-warm: #ece4d4;
-  --color-surface-dark: #141210;
   --color-dark-text: #1b1611;
-  --color-muted: rgba(242, 234, 220, 0.55);
-  --color-border-subtle: rgba(242, 234, 220, 0.12);
+  --color-muted: rgba(232, 224, 210, 0.45);
+  --color-border-subtle: rgba(232, 224, 210, 0.08);
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
 }
 
 body {
   background: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), -apple-system, Arial, Helvetica, sans-serif;
 }
 
 ::selection {

@@ -1,55 +1,70 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { getProjects } from "@/lib/content";
 import { Reveal } from "@/components/reveal";
-import { SceneLabel } from "@/components/scene-label";
 
 export default function ProjectsPage() {
   const projects = getProjects();
+  const featured = projects[0];
+  const rest = projects.slice(1);
 
   return (
-    <section className="bg-background text-foreground pt-[140px] pb-[160px] lg:pt-[180px] lg:pb-[200px]">
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-20">
-        <SceneLabel reel="02" scene="001" />
-
-        <Reveal>
-          <div className="mb-20 lg:mb-24">
-            <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted mb-3">
-              All Projects
-            </div>
-            <h1 className="font-display font-normal text-[40px] lg:text-[64px] leading-[1.05] tracking-[-0.015em]">
-              全部
-              <span className="italic text-accent">作品。</span>
-            </h1>
+    <section className="px-10 md:px-20 py-20 md:py-24">
+      <Reveal>
+        <div className="mb-16 md:mb-20">
+          <div className="text-[10px] tracking-[0.3em] uppercase text-muted mb-3">
+            All Projects
           </div>
-        </Reveal>
+          <h1 className="font-display font-light text-[40px] md:text-[64px] leading-[1.05] tracking-[-0.015em]">
+            全部
+            <em className="italic text-accent">作品</em>
+          </h1>
+        </div>
+      </Reveal>
 
-        <div className="flex flex-col">
-          {projects.map((project, i) => (
+      <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-6">
+        {featured && (
+          <Reveal>
+            <Link
+              href={`/projects/${featured.slug}`}
+              className="group relative overflow-hidden bg-surface border border-border-subtle rounded-[2px] p-10 md:p-14 flex flex-col justify-end min-h-[280px] md:min-h-[500px] hover:border-accent/25 hover:-translate-y-0.5 transition-all duration-300"
+            >
+              <span className="font-display text-[120px] absolute top-6 right-8 text-border-subtle leading-none">
+                01
+              </span>
+              <div className="text-[10px] tracking-[0.25em] uppercase text-accent mb-3">
+                {featured.type === "demo" ? "Demo" : "Link"}
+              </div>
+              <div className="font-display text-[28px] md:text-[40px] font-normal mb-3 tracking-[-0.01em]">
+                {featured.title}
+              </div>
+              <div className="text-[14px] text-muted leading-[1.7] max-w-[380px]">
+                {featured.description}
+              </div>
+              <div className="text-[10px] text-muted tracking-[0.1em] mt-5">
+                {featured.date}
+              </div>
+            </Link>
+          </Reveal>
+        )}
+
+        <div className="flex flex-col gap-6">
+          {rest.map((project, i) => (
             <Reveal key={project.slug}>
               <Link
                 href={`/projects/${project.slug}`}
-                className="group grid grid-cols-[auto_1fr] lg:grid-cols-[80px_1fr_180px_auto] gap-6 lg:gap-10 items-start lg:items-center py-10 lg:py-12 border-t border-border-subtle last:border-b hover:pl-3 lg:hover:pl-6 transition-[padding] duration-500"
+                className="group bg-surface border border-border-subtle rounded-[2px] p-10 flex flex-col justify-end min-h-[200px] hover:border-accent/25 hover:-translate-y-0.5 transition-all duration-300"
               >
-                <div className="font-mono text-[11px] tracking-[0.15em] text-accent pt-1 lg:pt-0">
-                  {String(i + 1).padStart(2, "0")}
+                <div className="text-[10px] tracking-[0.25em] uppercase text-accent mb-3">
+                  {project.type === "demo" ? "Demo" : "Link"}
                 </div>
-                <div className="flex flex-col gap-3">
-                  <h3 className="font-display font-normal text-[28px] lg:text-[42px] leading-[1.1] tracking-[-0.01em] group-hover:text-accent transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-[14px] lg:text-[15px] font-light leading-[1.7] text-muted max-w-[520px]">
-                    {project.description}
-                  </p>
+                <div className="font-display text-[24px] font-normal mb-3 tracking-[-0.01em]">
+                  {project.title}
                 </div>
-                <div className="hidden lg:block font-mono text-[10px] tracking-[0.2em] uppercase text-accent leading-[1.8]">
-                  <div>
-                    {project.date.slice(0, 4)} ·{" "}
-                    {project.type === "demo" ? "Demo" : "Link"}
-                  </div>
+                <div className="text-[14px] text-muted leading-[1.7]">
+                  {project.description}
                 </div>
-                <div className="hidden lg:block font-mono text-[10px] tracking-[0.2em] uppercase text-accent group-hover:text-foreground transition-colors">
-                  <ArrowRight size={14} />
+                <div className="text-[10px] text-muted tracking-[0.1em] mt-5">
+                  {project.date}
                 </div>
               </Link>
             </Reveal>

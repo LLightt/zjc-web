@@ -21,12 +21,12 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) notFound();
 
   return (
-    <section className="bg-background text-foreground pt-[140px] pb-[160px] lg:pt-[180px] lg:pb-[200px]">
-      <div className="max-w-[900px] mx-auto px-6 sm:px-10 lg:px-20">
+    <section className="px-10 md:px-20 py-20 md:py-24">
+      <div className="max-w-[900px]">
         <Reveal>
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted hover:text-foreground transition-colors mb-16"
+            className="inline-flex items-center gap-2 text-[10px] tracking-[0.25em] uppercase text-muted hover:text-foreground transition-colors mb-16"
           >
             <ArrowLeft size={12} />
             返回文章列表
@@ -34,13 +34,13 @@ export default async function BlogPostPage({ params }: PageProps) {
         </Reveal>
 
         <Reveal>
-          <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-accent mb-3">
+          <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-3">
             {post.date}
           </div>
-          <h1 className="font-display font-normal text-[40px] sm:text-[56px] lg:text-[72px] leading-[1.05] tracking-[-0.02em] mb-6">
+          <h1 className="font-display font-light text-[40px] md:text-[72px] leading-[1.05] tracking-[-0.02em] mb-6">
             {post.title}
           </h1>
-          <p className="text-[18px] lg:text-[20px] font-light leading-[1.8] text-muted max-w-[600px] mb-10">
+          <p className="text-[18px] md:text-[20px] font-light leading-[1.8] text-muted max-w-[600px] mb-10">
             {post.summary}
           </p>
         </Reveal>
